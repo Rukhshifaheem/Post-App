@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostApp</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+  </head>
+  <body>
+    <nav class="purple lighten-2">
+      <div class="nav-wrapper container">
+        <a href="./post.html" class="brand-logo">Post App</a>
+        <ul id="nav-mobile" class="right">
+          <li><a id="signoutButton">Logout</a></li>
+          <li>
+            <a href="#" id="profilePic">
+              <img
+                src="./images/profile-img.webp"
+                alt="Profile"
+                id="profileImage"
+                style="width: 40px; height: 40px; border-radius: 50%; margin-left: 10px; margin-top: 10px; cursor: pointer;"
+              />
+            </a>
+            <input type="file" id="uploadProfilePic" accept="image/*" style="display: none;" />
+          </li>
+        </ul>
+      </div>
+    </nav>    
+    
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row post-section">
+        <!-- Post Form Section -->
+        <div class="col s12 m4 post-form">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Create a Post</span>
+              <form id="postForm">
+                <div class="input-field">
+                  <input id="postTitle" type="text" required />
+                  <label for="postTitle">Title</label>
+                </div>
+                <div class="input-field">
+                  <textarea id="postContent" class="materialize-textarea" required></textarea>
+                  <label for="postContent">Content</label>
+                </div>
+    
+                <div class="image-icons mt-3">
+                  <div class="images d-flex"style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                    <img src="./images/img1.webp" class="bg-img" style="width: 45px; border-radius: 5px; margin-bottom: 15px" alt="Background Image 1" />
+                    <img src="./images/img3.webp" class="bg-img" style="width: 45px; border-radius: 5px; margin-bottom: 15px" alt="Background Image 3" />
+                    <img src="./images/img4.avif" class="bg-img" style="width: 45px; border-radius: 5px; margin-bottom: 15px" alt="Background Image 4" />
+                    <img src="./images/img6.jpg" class="bg-img" style="width: 45px; border-radius: 5px; margin-bottom: 15px" alt="Background Image 6" />
+                    <img src="./images/img7.jpg" class="bg-img" style="width: 45px; border-radius: 5px; margin-bottom: 15px" alt="Background Image 7" />
+                  </div>
+                </div>
+    
+                <input type="hidden" id="postId" value="">
+    
+                <div class="center-align">
+                  <button class="btn waves-effect waves-light purple lighten-2" type="submit">
+                    Add Post
+                  </button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Post List Section -->
+        <div class="col s12 m8 post-list">
+          <h5>All Posts</h5>
+          <div id="postList">
+            <!-- Dynamic posts will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

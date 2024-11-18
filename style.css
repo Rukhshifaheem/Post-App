@@ -1,0 +1,25 @@
+.container {
+    margin-top: 20px;
+}
+.post-section {
+    height: 100%;
+}
+.post-form {
+    height: auto;
+}
+.post-list {
+    overflow-y: auto;
+    max-height: 600px;
+}
+.post-card {
+    margin-bottom: 15px;
+}
+@media screen and (max-width: 768px) {
+    .post-section {
+        flex-direction: column;
+    }
+}
+li {
+    height: 50px;
+}
+

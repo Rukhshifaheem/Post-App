@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+<body>
+    <nav class="purple lighten-2">
+        <div class="nav-wrapper">
+          <a href="./index.html" class="brand-logo">Post-App</a>
+          <ul id="nav-mobile" class="right hide-on-small-and-down">
+            <li><a class="modal-trigger" href="#modal2">Login</a></li>
+            <li><a class="modal-trigger" href="#modal1">Signup</a></li>
+           
+          </ul>
+        </div>
+      </nav>
+    
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Signup</h4>
+          <form autocomplete="off">
+            <input type="email" id="SignupEmail" placeholder="email">
+            <input type="password" id="SignupPassword" placeholder="password">
+            <button id="signupButton" class="btn waves-effect purple lighten-2" type="submit">Submit</button>
+            <p>Already have an account? <a id="alreadySignup" class="modal-trigger" href="#modal2">Log in Now</a></p>
+          </form>
+        </div>
+      </div>
+    
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <h4>Login</h4>
+          <form autocomplete="off">
+            <input type="email" id="LoginEmail" placeholder="email">
+            <input type="password" id="LoginPassword" placeholder="password">
+            <button id="loginButton" class="btn waves-effect purple lighten-2" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
