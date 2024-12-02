@@ -167,22 +167,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call renderPosts initially (post list is empty)
   renderPosts(posts);
 
-  // Image selection event to change the background of the post list
+  // Image selection event to change the background for new posts
   const backgroundImages = document.querySelectorAll('.bg-img');
 
   backgroundImages.forEach(image => {
     image.addEventListener('click', (e) => {
       // Remove border from all images
       backgroundImages.forEach(img => img.style.border = 'none');
-  
+
       // Add border to the selected image
       const selectedImage = e.target;
-      selectedImage.style.border = '2px solid purple'; // Add border style
-  
-      // Set the background image
-      const selectedBackgroundImage = selectedImage.src; // Get the selected image source
-      console.log(selectedBackgroundImage);
-      postList.style.backgroundImage = `url(${selectedBackgroundImage})`; // Set the background image
+      selectedImage.style.border = '2px solid purple';
+
+      // Set the selected background image
+      selectedBackgroundImage = selectedImage.src; // Store the selected image source
+      console.log("Selected background image:", selectedBackgroundImage);
     });
   });
 
@@ -200,6 +199,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const postIndex = posts.findIndex(post => post.id === parseInt(postId));
       posts[postIndex].title = title;
       posts[postIndex].content = content;
+
+      // Update the background image only if a new one is selected
+      if (selectedBackgroundImage) {
+        posts[postIndex].backgroundImage = selectedBackgroundImage;
+      }
+
       document.getElementById("postId").value = ''; // Reset hidden input field for postId
     } else {
       // Otherwise, we're adding a new post
@@ -207,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id: new Date().getTime(), // Use timestamp as a unique ID for the post
         title: title,
         content: content,
+        backgroundImage: selectedBackgroundImage || '', // Use the selected background or none
       };
       posts.push(newPost);
     }
@@ -222,10 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to render posts dynamically
 function renderPosts(posts) {
   const postListContainer = document.getElementById("postList");
-
-  // Preserve the background image before clearing the content
-  const currentBackground = postListContainer.style.backgroundImage;
-  console.log(currentBackground);
 
   postListContainer.innerHTML = ""; // Clear the existing posts
 
@@ -246,9 +248,13 @@ function renderPosts(posts) {
       </div>
     `;
 
-    postCard.style.backgroundImage = currentBackground;
-    postCard.style.backgroundRepeat = "no-repeat";
-    postCard.style.backgroundSize = "cover"; 
+    // Set the background image for the individual post
+    if (post.backgroundImage) {
+      postCard.style.backgroundImage = `url(${post.backgroundImage})`;
+      postCard.style.backgroundRepeat = "no-repeat";
+      postCard.style.backgroundSize = "cover";
+    }
+
     postCard.innerHTML = postContent;
     postListContainer.appendChild(postCard);
 
@@ -278,8 +284,10 @@ function editPost(postId) {
   document.getElementById("postTitle").value = post.title;
   document.getElementById("postContent").value = post.content;
   document.getElementById("postId").value = post.id; // Set the post ID in a hidden input field for reference
-}
 
+  // Highlight the background image of the post being edited
+  selectedBackgroundImage = post.backgroundImage || '';
+}
 document.addEventListener("DOMContentLoaded", function () {
   const modals = document.querySelectorAll(".modal");
   M.Modal.init(modals);
